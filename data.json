@@ -1,0 +1,78 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "category_name": "Auto",
+      "description": "Car"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "category_name": "Fruits",
+      "description": "Fresh fruits"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "category_name": "Sport",
+      "description": "Sport product"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "product_name": "Suzuki",
+      "description": "SX-4",
+      "preview": "",
+      "category": 3,
+      "price": 500000,
+      "date_make": "2023-11-28T09:25:31Z",
+      "date_changed": "2023-11-28T09:25:33Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "product_name": "Ball",
+      "description": "Soccer ball",
+      "preview": "",
+      "category": 5,
+      "price": 500,
+      "date_make": "2023-11-28T09:25:55Z",
+      "date_changed": "2023-11-28T09:25:57Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "product_name": "Mazda",
+      "description": "CX-5",
+      "preview": "",
+      "category": 3,
+      "price": 2500000,
+      "date_make": "2023-11-28T09:26:18Z",
+      "date_changed": "2023-11-28T09:26:19Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "product_name": "apple",
+      "description": "apple",
+      "preview": "",
+      "category": 4,
+      "price": 20,
+      "date_make": "2023-11-28T09:26:37Z",
+      "date_changed": "2023-11-28T09:26:38Z"
+    }
+  }
+]
