@@ -76,12 +76,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+password = os.getenv('pg_password')
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'internet_shop',
         'USER': 'postgres',
-        'PASSWORD': 'W321s123',
+        'PASSWORD': password,
     }
 }
 
