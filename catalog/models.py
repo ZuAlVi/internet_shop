@@ -9,7 +9,7 @@ NULLABLE = {
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50, verbose_name='Категория')
-    description = models.CharField(max_length=250, verbose_name='Описание', **NULLABLE)
+    description = models.TextField(verbose_name='Описание', **NULLABLE)
 
     def __str__(self):
         return self.category_name
@@ -26,7 +26,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     product_name = models.CharField(max_length=50, verbose_name='Название')
-    description = models.CharField(max_length=100, verbose_name='Описание', **NULLABLE)
+    description = models.TextField(verbose_name='Описание', **NULLABLE)
     preview = models.ImageField(upload_to='product/', verbose_name='Превью', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
     price = models.IntegerField(verbose_name='Цена')
