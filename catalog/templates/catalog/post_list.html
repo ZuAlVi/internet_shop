@@ -1,0 +1,35 @@
+{% extends 'catalog/base.html' %}
+
+{%block title%} {{ title }} {%endblock%}
+
+{% load my_tags %}
+
+{%block content%}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">{{ title | title }}</h1>
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        {%for object in object_list%}
+        <div class="col-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ object.title | capfirst }}</h4>
+                </div>
+                <img class="card-img-top" src="{% media_tag object.photo %}">
+<!--                     alt="Card image cap"/>-->
+<!--                     src="{{ object.preview | media_filter }}"-->
+                <div class="card-body">
+                    <p class="card-title pricing-card-title">{{ object.text }}</p><br>
+                    <h6>Дата публикации: {{ object.make_date }}</h6><br>
+                    <a href="{% url 'catalog:post' object.slug %}" type="button" class="btn btn-lg btn-block btn-outline-primary">К посту</a>
+                    <a href="{% url 'catalog:post_update' object.slug %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Редактировать</a>
+                    <a href="{% url 'catalog:post_delete' object.slug %}" type="button" class="btn btn-danger">Удалить</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}

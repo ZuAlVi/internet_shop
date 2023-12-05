@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.db import connection
 
@@ -40,3 +42,33 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ('product_name',)
+
+
+class Feedback(models.Model):
+    user_name = models.CharField(max_length=100, verbose_name='Имя')
+    phone = models.CharField(max_length=30, verbose_name='Телефон')
+    message = models.TextField(verbose_name='Сообщение')
+
+    def __str__(self):
+        return f'Пользователь - {self.user_name}, телефон - {self.phone}, сообщение - {self.message}'
+
+    class Meta:
+        verbose_name = 'Обращение'
+        verbose_name_plural = 'Обращения'
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=150, verbose_name='Заголовок')
+    slug = models.CharField(unique=True, max_length=150, verbose_name='slag', **NULLABLE)
+    text = models.TextField(verbose_name='Содержимое')
+    photo = models.ImageField(upload_to='post/', verbose_name='Превью', **NULLABLE)
+    make_date = models.DateField(auto_now_add=True, verbose_name='Дата создания')
+    views_count = models.IntegerField(default=0, verbose_name='Просмотры')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
+    def __str__(self):
+        return f'Пост - {self.title}'
+
+    class Meta:
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
