@@ -12,7 +12,7 @@ urlpatterns = [
     path('product/<int:pk>', ProductDetailView.as_view(), name='product'),
     path('post/create', PostCreateView.as_view(), name='post_create'),
     path('update/<slug:slug>', PostUpdateView.as_view(), name='post_update'),
-    path('post/', PostListView.as_view(), name='post_list'),
+    path('posts/', PostListView.as_view(), name='post_list'),
     path('post/<slug:slug>', PostDetailView.as_view(), name='post'),
     path('delete/<slug:slug>', PostDeleteView.as_view(), name='post_delete'),
 ]

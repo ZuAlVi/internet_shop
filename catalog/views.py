@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from pytils.translit import slugify
 
 from catalog.models import Product, Feedback, Post
-from pytils.translit import slugify
 
 
 class ProductsListView(ListView):
@@ -65,7 +65,7 @@ class PostUpdateView(UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('catalog:post', args=self.kwargs.get('slug'))
+        return reverse('catalog:post', args=self.kwargs.get('pk'))
 
 
 class PostListView(ListView):
