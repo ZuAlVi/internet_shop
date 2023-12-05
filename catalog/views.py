@@ -65,7 +65,7 @@ class PostUpdateView(UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('catalog:post', args=self.kwargs.get('pk'))
+        return reverse('catalog:post', args=[self.kwargs.get('slug')])
 
 
 class PostListView(ListView):
