@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+
+{%block title%} title {%endblock%}
+
+{%block content%}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">{{ title }}</h1>
+</div>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-6-centered">
+            <div class="card w-50">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>Хотите удалить товар {{ object.product_name }}</p>
+                        <button type="submit" class="btn btn-danger">Подтвердить</button>
+                        <a href="{% url 'catalog:index' %}" class="btn btn-warning">Отмена</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

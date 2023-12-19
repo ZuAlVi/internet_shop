@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="row text-center">
-        {%for object in object_list%}
+        {% for object in object_list %}
         <div class="col-4">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
@@ -24,7 +24,18 @@
                     <p class="card-title pricing-card-title">{{ object.description | truncatechars:100  }}</p><br>
                     <h4 class="my-0 font-weight-normal">Цена {{ object.price }} руб.</h4><br>
                     <h6>Дата подачи объявления {{ object.date_make }}</h6>
+                    <br>
+                    <br>
+                    {% for version in object.version_set.all %}
+                        {% if version.current_version %}
+                            <p>Активная версия: {{ version.number }} - {{ version.name }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="card-footer">
                     <a href="{% url 'catalog:product' object.id %}" type="button" class="btn btn-lg btn-block btn-outline-primary">К товару</a>
+                    <a href="{% url 'catalog:update_product' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Редактировать</a>
+                    <a href="{% url 'catalog:delete_product' object.pk %}" type="button" class="btn btn-lg btn-block btn-danger">Удалить</a>
                 </div>
             </div>
         </div>
