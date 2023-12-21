@@ -39,6 +39,7 @@ class ProductDetailView(DetailView):
 class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
+    template_name = 'catalog/product_create.html'
 
     def get_success_url(self):
         return reverse('catalog:index')

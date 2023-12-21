@@ -1,0 +1,35 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="col-12">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card_title">
+                        {% if object%}
+                        Редактирание товара
+                        {% else %}
+                        Добавление товара
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if object%}
+                    <button type="submit" class="btn btn-success">Изменить</button>
+                    {% else %}
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'catalog:index' %}" class="btn btn-warning">Отмена</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
