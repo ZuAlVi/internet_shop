@@ -1,4 +1,5 @@
 from django.forms import inlineformset_factory
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -56,6 +57,8 @@ class ProductCreateView(CreateView):
     def form_valid(self, form):
         formset = self.get_context_data()['formset']
         self.object = form.save()
+        self.object.user = self.request.user
+        self.object.save()
 
         if formset.is_valid():
             formset.instance = self.object
@@ -70,6 +73,12 @@ class ProductUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('catalog:index')
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.user != self.request.user and not self.request.user.is_staff:
+            raise Http404("Вы не являетесь владельцем этого товара")
+        return self.object
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)

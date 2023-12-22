@@ -19,6 +19,7 @@
 <!--                     src="{{ object.preview | media_filter }}"-->
                 <div class="card-body">
                     <p class="card-title pricing-card-title">{{ object.description | truncatechars:100  }}</p><br>
+                    <p class="card-title pricing-card-title">{{ object.user| default:"Ничье"   }}</p><br>
                     <h4 class="my-0 font-weight-normal">Цена {{ object.price }} руб.</h4><br>
                     <a href="#" type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</a>
                 </div>

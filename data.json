@@ -3,24 +3,32 @@
     "model": "catalog.category",
     "pk": 3,
     "fields": {
-      "category_name": "Auto",
-      "description": "Car"
+      "category_name": "автомобили",
+      "description": "Автомобили новые и б/у. Иномарки и отечественные. Лучший выбор."
     }
   },
   {
     "model": "catalog.category",
     "pk": 4,
     "fields": {
-      "category_name": "Fruits",
-      "description": "Fresh fruits"
+      "category_name": "фрукты",
+      "description": "Здесь вы можете приобрести самые свежие фрукты."
     }
   },
   {
     "model": "catalog.category",
     "pk": 5,
     "fields": {
-      "category_name": "Sport",
-      "description": "Sport product"
+      "category_name": "Товары для спорта",
+      "description": "Здесь вы найдете спортивные товары, лучших мировых брендов."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "category_name": "Канцтовары",
+      "description": "У нас предоставлены все виды канцтоваров."
     }
   },
   {
@@ -28,8 +36,8 @@
     "pk": 3,
     "fields": {
       "product_name": "Suzuki",
-      "description": "SX-4",
-      "preview": "",
+      "description": "Отличный и надежный автомобиль. Б/у.",
+      "preview": "product/Suzuki-sx4.jpeg",
       "category": 3,
       "price": 500000,
       "date_make": "2023-11-28T09:25:31Z",
@@ -40,9 +48,9 @@
     "model": "catalog.product",
     "pk": 4,
     "fields": {
-      "product_name": "Ball",
-      "description": "Soccer ball",
-      "preview": "",
+      "product_name": "Футбольный мяч",
+      "description": "Мяч для игры в футбол. Изготовлен из качественных материалов",
+      "preview": "product/Soccer_ball.jpeg",
       "category": 5,
       "price": 500,
       "date_make": "2023-11-28T09:25:55Z",
@@ -54,8 +62,8 @@
     "pk": 5,
     "fields": {
       "product_name": "Mazda",
-      "description": "CX-5",
-      "preview": "",
+      "description": "Отличный японский автомобиль. Новый. С салона.",
+      "preview": "product/mazda-cx5.jpeg",
       "category": 3,
       "price": 2500000,
       "date_make": "2023-11-28T09:26:18Z",
@@ -66,13 +74,104 @@
     "model": "catalog.product",
     "pk": 6,
     "fields": {
-      "product_name": "apple",
-      "description": "apple",
-      "preview": "",
+      "product_name": "Яблоко",
+      "description": "Яблоки выращеные на лучших яблочных деревьях. Являютя экологически чистым продуктом.",
+      "preview": "product/Apple.jpeg",
       "category": 4,
       "price": 20,
       "date_make": "2023-11-28T09:26:37Z",
       "date_changed": "2023-11-28T09:26:38Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "product_name": "Шариковая ручка",
+      "description": "Шариковая ручка класического дизайна. Подойдет для всех случаев жизни.",
+      "preview": "product/Pen.jpeg",
+      "category": 6,
+      "price": 50,
+      "date_make": "2023-12-01T09:24:00Z",
+      "date_changed": "2023-12-01T09:24:02Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "product_name": "Груша",
+      "description": "Сочные, мягкие. Просто тают во рту.",
+      "preview": "product/Pear.jpeg",
+      "category": 4,
+      "price": 25,
+      "date_make": "2023-12-01T09:24:57Z",
+      "date_changed": "2023-12-01T09:24:58Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "product_name": "Ваз 2105",
+      "description": "Старая, но никем не отмененная.",
+      "preview": "product/2105.jpeg",
+      "category": 3,
+      "price": 20000,
+      "date_make": "2023-12-01T09:25:42Z",
+      "date_changed": "2023-12-01T09:25:44Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+      "product_name": "Волейбольный мяч",
+      "description": "Отличный волейбольный мяч. Подойдет для игры на природе и в помещении.",
+      "preview": "product/Valleyball.jpeg",
+      "category": 5,
+      "price": 400,
+      "date_make": "2023-12-01T09:26:42Z",
+      "date_changed": "2023-12-01T09:26:43Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 11,
+    "fields": {
+      "product_name": "карандаш",
+      "description": "Простой карандаш средней твердости. Износу нет.",
+      "preview": "",
+      "category": 6,
+      "price": 10,
+      "date_make": "2023-12-01T11:37:34Z",
+      "date_changed": "2023-12-01T11:37:35Z"
+    }
+  },
+  {
+    "model": "catalog.post",
+    "pk": 7,
+    "fields": {
+      "title": "post2",
+      "slug": "post2",
+      "text": "post2222",
+      "photo": "",
+      "make_date": "2023-12-05",
+      "views_count": 0,
+      "is_published": true
+    }
+  },
+  {
+    "model": "catalog.post",
+    "pk": 8,
+    "fields": {
+      "title": "post3",
+      "slug": "post3",
+      "text": "post3",
+      "photo": "",
+      "make_date": "2023-12-05",
+      "views_count": 1,
+      "is_published": true
     }
   }
 ]

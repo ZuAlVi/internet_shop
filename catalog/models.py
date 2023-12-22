@@ -2,6 +2,7 @@ from django.db import connection
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from config import settings
 
 NULLABLE = {
     'blank': True,
@@ -34,6 +35,8 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Цена')
     date_make = models.DateTimeField(auto_now=True, verbose_name='Дата создания', **NULLABLE)
     date_changed = models.DateTimeField(auto_now_add=True, verbose_name='Дата изменения', **NULLABLE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='user', **NULLABLE)
+    is_published = models.BooleanField(default=True, verbose_name='статус публикации')
 
     def __str__(self):
         return self.product_name

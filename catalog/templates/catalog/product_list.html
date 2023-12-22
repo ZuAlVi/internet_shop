@@ -23,6 +23,7 @@
                 <div class="card-body">
                     <p class="card-title pricing-card-title">{{ object.description | truncatechars:100  }}</p><br>
                     <h4 class="my-0 font-weight-normal">Цена {{ object.price }} руб.</h4><br>
+                    <h4 class="my-0 font-weight-normal">{{ object.user| default:"Ничье"  }} </h4><br>
                     <h6>Дата подачи объявления {{ object.date_make }}</h6>
                     <br>
                     <br>
