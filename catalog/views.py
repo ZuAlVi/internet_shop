@@ -1,24 +1,29 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
 from django.http import Http404
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from pytils.translit import slugify
 
-from catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm, ModeratorProductForm
 from catalog.models import Product, Feedback, Post, Version
 
 
-class ProductsListView(ListView):
+class ProductsListView(LoginRequiredMixin, ListView):
     model = Product
-    extra_context = {
-        'title': 'Skystore - продукты'
-    }
+    login_url = 'users:login'
+
+    # def get_queryset(self):
+    #     queryset = super().get_queryset().all()
+    #     if not self.request.user.is_staff:
+    #         return queryset.filter(user=self.request.user)
+    #     return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['version'] = Version.objects.all()
+        context['title'] = 'Skystore - продукты'
         return context
 
 
@@ -37,11 +42,20 @@ class ProductDetailView(DetailView):
 
         return context_data
 
+    # def get_object(self, queryset=None):
+    #     self.object = super().get_object(queryset)
+    #     if self.object.user != self.request.user and not self.request.user.is_staff:
+    #         raise Http404("Вы не являетесь владельцем этого товара")
+    #     return self.object
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
+
+class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'catalog/product_create.html'
+    login_url = 'users:login'
+
+    permission_required = 'catalog.add_product'
 
     def get_success_url(self):
         return reverse('catalog:index')
@@ -70,7 +84,13 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
-    form_class = ProductForm
+    login_url = 'users:login'
+
+    def get_form_class(self):
+        if self.request.user.is_staff:
+            return ModeratorProductForm
+        else:
+            return ProductForm
 
     def get_success_url(self):
         return reverse('catalog:index')
@@ -104,6 +124,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:index')
+    login_url = 'users:login'
 
 
 class FeedbackCreateView(CreateView):

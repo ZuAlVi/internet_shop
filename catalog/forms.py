@@ -14,7 +14,7 @@ class StyleFormMixin:
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        exclude = ('user',)
+        exclude = ('user', 'is_published')
 
     def clean_product_name(self):
         cleaned_data = self.cleaned_data.get('product_name')
@@ -60,3 +60,9 @@ class VersionForm(forms.ModelForm):
     class Meta:
         model = Version
         fields = '__all__'
+
+
+class ModeratorProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('description', 'category', 'is_published')

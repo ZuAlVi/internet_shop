@@ -1,5 +1,6 @@
 import random
 
+from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
 from django.core.mail import send_mail
@@ -37,6 +38,10 @@ class RegisterView(CreateView):
             subject='Регистрация на сервисе',
             from_email=DEFAULT_FROM_EMAIL,
         )
+
+        client_group = Group.objects.get(name='Клиент')
+        client_group.user_set.add(new_user)
+
         return super().form_valid(form)
 
 
