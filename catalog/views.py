@@ -14,11 +14,11 @@ class ProductsListView(LoginRequiredMixin, ListView):
     model = Product
     login_url = 'users:login'
 
-    # def get_queryset(self):
-    #     queryset = super().get_queryset().all()
-    #     if not self.request.user.is_staff:
-    #         return queryset.filter(user=self.request.user)
-    #     return queryset
+    def get_queryset(self):
+        queryset = super().get_queryset().all()
+        if not self.request.user.is_staff:
+            return queryset.filter(user=self.request.user, is_published=True)
+        return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -82,9 +82,10 @@ class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
         return super().form_valid(form)
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
     login_url = 'users:login'
+    permission_required = 'catalog.change_product'
 
     def get_form_class(self):
         if self.request.user.is_staff:
