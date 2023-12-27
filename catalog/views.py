@@ -7,7 +7,19 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from pytils.translit import slugify
 
 from catalog.forms import ProductForm, VersionForm, ModeratorProductForm
-from catalog.models import Product, Feedback, Post, Version
+from catalog.models import Product, Feedback, Post, Version, Category
+from catalog.services import get_categories_cache
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    model = Category
+    login_url = 'users:login'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['object_list'] = get_categories_cache()
+        context['title'] = 'Skystore - категории'
+        return context
 
 
 class ProductsListView(LoginRequiredMixin, ListView):

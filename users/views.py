@@ -1,5 +1,6 @@
 import random
 
+from django.conf import settings
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
@@ -8,7 +9,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, View, UpdateView
 
-from config.settings import DEFAULT_FROM_EMAIL
 from users.forms import UserRegisterForm, UserForm
 from users.models import User
 
@@ -36,7 +36,7 @@ class RegisterView(CreateView):
             recipient_list=[new_user.email],
             message=f'Для подтверждения email введите код {new_user.code}',
             subject='Регистрация на сервисе',
-            from_email=DEFAULT_FROM_EMAIL,
+            from_email=settings.DEFAULT_FROM_EMAIL,
         )
 
         client_group = Group.objects.get(name='Клиент')
